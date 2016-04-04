@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Matrices\DiagonalMatrix.cs" />
     <Compile Include="Matrices\Matrix.cs" />
-    <Compile Include="Matrices\MatrixFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Matrices\SquareMatrix.cs" />
     <Compile Include="Matrices\SymmetricMatrix.cs" />

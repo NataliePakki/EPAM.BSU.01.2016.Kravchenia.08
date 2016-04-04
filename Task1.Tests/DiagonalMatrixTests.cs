@@ -23,17 +23,17 @@ namespace Task1.Tests {
 
         [Test]
         public void CreateTest() {
-            Matrix<int> diagonalMatrix = MatrixFactory.GetMatrix(_rightDiogonalElements, typeof(DiagonalMatrix<int>)); 
+            Matrix<int> diagonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements); 
         }
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void CreateTest_Exception1() {
-            Matrix<int> diagonalMatrix = MatrixFactory.GetMatrix(_notRightDiogonalElements, typeof(DiagonalMatrix<int>)); 
+            Matrix<int> diagonalMatrix = new DiagonalMatrix<int>(_notRightDiogonalElements);  
         }
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void CreateTest_Exception2() {
-            Matrix<int> diagonalMatrix = MatrixFactory.GetMatrix(_notRightElements, typeof(DiagonalMatrix<int>)); 
+            Matrix<int> diagonalMatrix = new DiagonalMatrix<int>(_notRightElements); 
         }
         [Test]
         [ExpectedException(typeof(ArgumentException))]
@@ -49,13 +49,13 @@ namespace Task1.Tests {
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void SetElementTest_Exception(){
-            Matrix<int> diogonalMatrix = MatrixFactory.GetMatrix(_rightDiogonalElements, typeof(DiagonalMatrix<int>));
+            Matrix<int> diogonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements); 
             diogonalMatrix.SetElement(3, 3, 3);
 
         }
         [Test]
         public void SetElementTest() {
-            Matrix<int> diogonalMatrix = MatrixFactory.GetMatrix(_rightDiogonalElements, typeof(DiagonalMatrix<int>));
+            Matrix<int> diogonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements); 
             diogonalMatrix.SetElement(0, 0, 3);
         }
     }

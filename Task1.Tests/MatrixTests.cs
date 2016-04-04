@@ -17,19 +17,19 @@ namespace Task1.Tests {
         [Test]
         public void SymmMatrixSumWithDiagonalMatrix_Test() {
             var result = new[] {new[] {2, 45, 6}, new[] {45, 6, 8}, new[] {6, 8, 60}};
-            var matrixResult = MatrixFactory.GetMatrix(result, typeof(SquareMatrix<int>));
+            var matrixResult = new SquareMatrix<int>(result);
             Assert.AreEqual(matrixResult, _symmMatrix.SumWith(_diogonalMatrix));
         }
         [Test]
         public void DiogonalMatrixSumWithSymmMatrix_Test() {
             var result = new[] { new[] { 2, 45, 6 }, new[] { 45, 6, 8 }, new[] { 6, 8, 60 } };
-            var matrixResult = MatrixFactory.GetMatrix(result, typeof(SquareMatrix<int>));
+            var matrixResult = new SquareMatrix<int>(result);
             Assert.AreEqual(matrixResult, _diogonalMatrix.SumWith(_symmMatrix));
         }
         [Test]
         public void SquareMatrixSumWithSymmetricMatrix_Test() {
             var result = new[] { new[] { 2, 47, 9 }, new[] { 49, 8, 14 }, new[] { 13, 16, 13 } };
-            var matrixResult = MatrixFactory.GetMatrix(result, typeof(SquareMatrix<int>));
+            var matrixResult = new SquareMatrix<int>(result);
             Assert.AreEqual(matrixResult, _squareMatrix.SumWith(_symmMatrix));
         }
     }

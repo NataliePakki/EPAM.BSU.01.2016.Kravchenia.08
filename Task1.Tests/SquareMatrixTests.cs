@@ -20,17 +20,17 @@ namespace Task1.Tests{
 
         [Test]
         public void CreateTest() {
-            Matrix<int> squareMatrix = MatrixFactory.GetMatrix(_rightSquareElements, typeof(SquareMatrix<int>)); 
+            Matrix<int> squareMatrix = new SquareMatrix<int>(_rightSquareElements);
         }
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void CreateTest_Exception1() {
-            Matrix<int> squareMatrix = MatrixFactory.GetMatrix(_notRightSquareElements, typeof(SquareMatrix<int>)); 
+            Matrix<int> squareMatrix = new SquareMatrix<int>(_notRightSquareElements);
         }
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void CreateTest_Exception2() {
-            Matrix<int> squareMatrix = MatrixFactory.GetMatrix(_notRightElements, typeof(SquareMatrix<int>));
+            Matrix<int> squareMatrix = new SquareMatrix<int>(_notRightElements); 
         }
 
         [Test]
@@ -49,13 +49,13 @@ namespace Task1.Tests{
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void SetElementTest_Exception() {
-            Matrix<int> squareMatrix = MatrixFactory.GetMatrix(_rightSquareElements, typeof(SquareMatrix<int>));
+            Matrix<int> squareMatrix = new SquareMatrix<int>(_rightSquareElements);
             squareMatrix.SetElement(3, 1, 3);
 
         }
         [Test]
         public void SetElementTest() {
-            Matrix<int> squareMatrix = MatrixFactory.GetMatrix(_rightSquareElements, typeof(SquareMatrix<int>));
+            Matrix<int> squareMatrix = new SquareMatrix<int>(_rightSquareElements);
             squareMatrix.SetElement(0, 0, 3);
         }
     
