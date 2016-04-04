@@ -7,9 +7,8 @@ namespace Task2 {
         private IComparer<T> Comparer { get; }
         public BinaryTree(IComparer<T> comparer = null){
             if (comparer == null)
-                if (typeof(T).GetInterface("IComparable`1") == null && typeof(T).GetInterface("IComparable") == null 
-                    && typeof(T).GetInterface("IComparer") == null && typeof(T).GetInterface("IComparer`1") == null)
-                     throw new DefaultComparerException("Values mustn't comparer.");
+                if (typeof(T).GetInterface("IComparable`1") == null && typeof(T).GetInterface("IComparable") == null)
+                     throw new DefaultComparerException($"{typeof(T).Name} doesn't implement IComparable interface.");
             Comparer = comparer ?? Comparer<T>.Default;
                 
         }

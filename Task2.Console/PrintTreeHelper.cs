@@ -21,7 +21,7 @@ namespace Task2.Console {
         }
         public void Print() => Print(_tree.GetRoot(), 0);
         
-        public void PreorderPrint() => OrderPrint(_tree.Postorder(), "Preorder:");
+        public void PreorderPrint() => OrderPrint(_tree.Preorder(), "Preorder:");
         public void PostorderPrint() => OrderPrint(_tree.Postorder(), "Postorder:");
         
         public void IncorderPrint() => OrderPrint(_tree.Inorder(), "Inororder:");
