@@ -3,61 +3,80 @@ using Task1.Matrices;
 
 namespace Task1.Visitor {
     public class SumMatrixVisitor<T> : IMatrixVisitor<T> {
-        public Matrix<T> Result { get; private set; }
-        public Matrix<T> Matrix { get; private set; }
-        public Matrix<T> OtherMatrix { get; private set; }
+        public dynamic Result { get; private set; }
+        public dynamic Matrix { get; private set; }
+        public dynamic OtherMatrix { get; private set; }
 
-        public SumMatrixVisitor(Matrix<T> matrix) {
+        public SumMatrixVisitor(dynamic matrix) {
             if (matrix == null) throw new ArgumentNullException(nameof(matrix));
             OtherMatrix = matrix;
         }
 
         public void Visit(DiagonalMatrix<T> diagonalMatrix) {
             Matrix = diagonalMatrix;
-            if (!IsValid())
-                throw new InvalidOperationException("Size of matrices is different.");
-            var n = OtherMatrix.N;
-            SquareMatrix<T> resultMatrix = new SquareMatrix<T>(OtherMatrix);
-
-            for (int i = 0; i < n; i++)
-                resultMatrix.SetElement(i, i, Matrix[i, i] + (dynamic)resultMatrix[i,i] );
-
-            Result = resultMatrix;
+            Validate();
+            Result = OtherMatrix;
+            try {
+                for (int i = 0; i < Matrix.N; i++)
+                        Result[i, i] = Result[i, i] + Matrix[i, i];
+            }
+            catch (Exception ex) {
+                throw new SumMatrixException("Type of matrixs' elements doesn't support operator +.");
+            }
+           
         }
 
         public void Visit(SquareMatrix<T> squareMatrix) {
             Matrix = squareMatrix;
-            if (!IsValid())
-                throw new InvalidOperationException("Size of matrices is different.");
-            var n = OtherMatrix.N;
-            SquareMatrix<T> resultMatrix = new SquareMatrix<T>(Matrix);
-
-            for (int i = 0; i < n; i++)
-                for(int j = 0; j < n; j++)
-                resultMatrix.SetElement(i, j, (dynamic)OtherMatrix[i, j] + resultMatrix[i, j]);
-
-            Result = resultMatrix;
+            Validate();
+            Result = Matrix;
+            try {
+                for (int i = 0; i < Matrix.N; i++)
+                    for (int j = 0; j < Matrix.N; j++) {
+                        Result[i, j] = Result[i, j] + Matrix[i, j];
+                    }
+            }
+            catch (Exception ex) {//TODO: CHAMGE IT
+                throw new SumMatrixException("Type of matrixs' elements doesn't support operator +.");
+            }
         }
 
-        public void Visit(SymmetricMatrix<T> symmetricMatrix) {
+        public void Visit(SymmetricMatrix<T> symmetricMatrix) { 
             Matrix = symmetricMatrix;
-            if (!IsValid())
-                throw new InvalidOperationException("Size of matrices is different");
-            var n = OtherMatrix.N;
-            SquareMatrix<T> resultMatrix = new SquareMatrix<T>(OtherMatrix);
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j <= i; j++) {
-                    resultMatrix.SetElement(i, j, Matrix[i, j] + (dynamic)resultMatrix[i, j]);
-                    if(i != j)
-                        resultMatrix.SetElement(j, i, Matrix[j, i] + (dynamic)resultMatrix[j, i]);
-                }
+            Validate();
+            if (OtherMatrix.GetType() != typeof(SymmetricMatrix<T>)) {
+                dynamic temp = OtherMatrix;
+                OtherMatrix = symmetricMatrix;
+                Visit(temp);
+                return;
+            }
+            Result = OtherMatrix;
+            try {
+                for (int i = 0; i < Matrix.N; i++)
+                    for (int j = 0; j <= i; j++) {
+                        Result[i, j] = Result[i, j] + Matrix[i, j];
+                    }
+            }
+            catch (Exception ex) {
+                throw new SumMatrixException("Type of matrixs' elements doesn't support operator +.");
+            }
 
-            Result = resultMatrix;
         }
         private bool IsValid() {
             return Matrix.N == OtherMatrix.N;
         }
 
+        private void Validate() {
+            if (!IsValid())
+                throw new InvalidOperationException("Size of matrices is different");
+        }
+        public sealed class SumMatrixException : Exception {
+            public SumMatrixException(string message) : base(message) { }
+        }
+
+        
+
     }
+    
 }
 

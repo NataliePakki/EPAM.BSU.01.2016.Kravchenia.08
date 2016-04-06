@@ -8,29 +8,27 @@ namespace Task1.Tests {
         private readonly SquareMatrix<int> _squareMatrix =
             new SquareMatrix<int>(new[] {new[] {1, 2, 3}, new[] {4, 5, 6}, new[] {7, 8, 9}});
 
-        private readonly DiagonalMatrix<int> _diogonalMatrix =
-            new DiagonalMatrix<int>(new[] {new[] {1, 0, 0}, new[] {0, 3, 0}, new[] {0, 0, 56}});
+        private readonly DiagonalMatrix<int> _diogonalSquareMatrix =
+            new DiagonalMatrix<int>(new []{1,2,3});
 
         private readonly SymmetricMatrix<int> _symmMatrix =
-            new SymmetricMatrix<int>(new[] {new[] {1, 45, 6}, new[] {45, 3, 8}, new[] {6, 8, 4}});
+            new SymmetricMatrix<int>(new[] { new[] { 1, 2, 4 }, new[] { 2, 3, 5 }, new[] { 4, 5, 6 }});
 
         [Test]
         public void SymmMatrixSumWithDiagonalMatrix_Test() {
-            var result = new[] {new[] {2, 45, 6}, new[] {45, 6, 8}, new[] {6, 8, 60}};
-            var matrixResult = new SquareMatrix<int>(result);
-            Assert.AreEqual(matrixResult, _symmMatrix.SumWith(_diogonalMatrix));
+            var sumResult = _symmMatrix.SumWith(_diogonalSquareMatrix);
         }
         [Test]
-        public void DiogonalMatrixSumWithSymmMatrix_Test() {
-            var result = new[] { new[] { 2, 45, 6 }, new[] { 45, 6, 8 }, new[] { 6, 8, 60 } };
-            var matrixResult = new SquareMatrix<int>(result);
-            Assert.AreEqual(matrixResult, _diogonalMatrix.SumWith(_symmMatrix));
+        public void SymmMatrixSumWithSymmMatrix_Test() {
+            var sumResult = _symmMatrix.SumWith(_symmMatrix);
         }
         [Test]
-        public void SquareMatrixSumWithSymmetricMatrix_Test() {
-            var result = new[] { new[] { 2, 47, 9 }, new[] { 49, 8, 14 }, new[] { 13, 16, 13 } };
-            var matrixResult = new SquareMatrix<int>(result);
-            Assert.AreEqual(matrixResult, _squareMatrix.SumWith(_symmMatrix));
+        public void DiagonalMatrixSumWithDiagonalMatrix_Test() {
+            var result = new[] { 2,4,6 };
+            var matrixResult = new DiagonalMatrix<int>(result);
+            var sumResult = _diogonalSquareMatrix.SumWith(_diogonalSquareMatrix);
         }
     }
+
 }
+    

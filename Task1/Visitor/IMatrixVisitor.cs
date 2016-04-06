@@ -2,8 +2,8 @@
 
 namespace Task1.Visitor {
     public interface IMatrixVisitor<T> {
-        void Visit(DiagonalMatrix<T> diagonalMatrix);
-        void Visit(SquareMatrix<T> squareMatrix);
-        void Visit(SymmetricMatrix<T> symmetricMatrix);
+        void Visit(SquareMatrix<T> otherMatrix);
+        void Visit(DiagonalMatrix<T> otherMatrix);
+        void Visit(SymmetricMatrix<T> otherMatrix);
     }
 }

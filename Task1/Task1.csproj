@@ -42,17 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Matrices\DiagonalMatrix.cs" />
-    <Compile Include="Matrices\Matrix.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Matrices\SquareMatrix.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Matrices\SymmetricMatrix.cs" />
-    <Compile Include="Validator\CommonMatrixValidator.cs" />
-    <Compile Include="Validator\SquareValidator.cs" />
-    <Compile Include="Validator\DiagonalMatrixValidator.cs" />
-    <Compile Include="Validator\IValidatorList.cs" />
-    <Compile Include="Validator\IValidatorMatrix.cs" />
-    <Compile Include="Validator\SymmetricMatrixValidator.cs" />
-    <Compile Include="Validator\ValidatorList.cs" />
     <Compile Include="Visitor\IMatrixVisitor.cs" />
     <Compile Include="Visitor\MatrixExtension.cs" />
     <Compile Include="Visitor\SumMatrixVisitor.cs" />

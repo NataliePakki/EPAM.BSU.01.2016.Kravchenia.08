@@ -42,7 +42,6 @@ namespace Task2 {
                 yield break;
             foreach (var element in Inorder(node.Left))
                 yield return element;
-
             yield return node.Info;
             foreach (var element in Inorder(node.Right))
                 yield return element;
