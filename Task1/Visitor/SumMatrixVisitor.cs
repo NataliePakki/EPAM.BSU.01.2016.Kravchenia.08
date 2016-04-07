@@ -20,7 +20,7 @@ namespace Task1.Visitor {
                 for (int i = 0; i < Matrix.N; i++)
                         Result[i, i] = Result[i, i] + Matrix[i, i];
             }
-            catch (Exception ex) {
+            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException) {
                 throw new SumMatrixException("Type of matrixs' elements doesn't support operator +.");
             }
            
@@ -36,7 +36,7 @@ namespace Task1.Visitor {
                         Result[i, j] = Result[i, j] + Matrix[i, j];
                     }
             }
-            catch (Exception ex) {//TODO: CHAMGE IT
+            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException) {
                 throw new SumMatrixException("Type of matrixs' elements doesn't support operator +.");
             }
         }
@@ -57,7 +57,7 @@ namespace Task1.Visitor {
                         Result[i, j] = Result[i, j] + Matrix[i, j];
                     }
             }
-            catch (Exception ex) {
+            catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException) {
                 throw new SumMatrixException("Type of matrixs' elements doesn't support operator +.");
             }
 
@@ -70,13 +70,7 @@ namespace Task1.Visitor {
             if (!IsValid())
                 throw new InvalidOperationException("Size of matrices is different");
         }
-        public sealed class SumMatrixException : Exception {
-            public SumMatrixException(string message) : base(message) { }
-        }
-
-        
-
-    }
+     }
     
 }
 
