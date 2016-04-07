@@ -15,7 +15,7 @@ namespace Task1.Matrices {
                 throw new ArgumentNullException($"{nameof(diagonal)} is null.");
             N = diagonal.Length;
             Elements = new T[N];
-            Elements = (T[])diagonal.Clone();
+            Array.Copy(diagonal, Elements, N);
         }
         public DiagonalMatrix(T[][] elements) {
             if (elements == null)
