@@ -47,6 +47,7 @@
     <Compile Include="Matrices\SymmetricMatrix.cs" />
     <Compile Include="Visitor\IMatrixVisitor.cs" />
     <Compile Include="Visitor\MatrixExtension.cs" />
+    <Compile Include="Visitor\SumMatrixException.cs" />
     <Compile Include="Visitor\SumMatrixVisitor.cs" />
   </ItemGroup>
   <ItemGroup />
