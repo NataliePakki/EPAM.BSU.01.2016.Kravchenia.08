@@ -1,48 +1,34 @@
 ﻿using System;
 
 namespace Task1.Matrices {
-    public class DiagonalMatrix<T> : SquareMatrix<T> {
-       public DiagonalMatrix(int n) {
-            if (n > 0) {
-                N = n;
-                Elements = new T[N];
-            }
-            else throw new ArgumentException("N must be positive.");
-        }
+    public class DiagonalMatrix<T> : AbstractSquareMatrix<T> {
+       public DiagonalMatrix(int n) : base(n){ }
 
-        public DiagonalMatrix(T[] diagonal) {
-            if(diagonal == null)
-                throw new ArgumentNullException($"{nameof(diagonal)} is null.");
-            N = diagonal.Length;
-            Elements = new T[N];
+        public DiagonalMatrix(T[] diagonal) : base(diagonal.Length) {
             Array.Copy(diagonal, Elements, N);
         }
-        public DiagonalMatrix(T[][] elements) {
-            if (elements == null)
-                throw new ArgumentNullException($"{nameof(elements)} is null.");
-            if (!IsValid(elements)) {
-                throw new ArgumentException("Matrix doesn't diagonal.");
-            }
-            N = elements.Length;
-            Elements = new T[N];
-            for (int i = 0; i < N; i ++)
-                this[i,i] = elements[i][i];
+        public DiagonalMatrix(T[][] elements) : base(elements){ }
+
+        protected override void SetElement(int i, int j, T value) {
+            if (i != j)
+                throw new IndexOutOfRangeException();
+            Elements[i] = value;
         }
 
+        protected override T GetElement(int i, int j) {
+            return i != j ? default(T) : Elements[i];
+        }
 
-        public override T this[int i, int j] {
-            get {
-                if (i > N || j > N || i < 0 || j < 0)
-                    throw new ArgumentOutOfRangeException();
-                return i == j ? Elements[i] : default(T);
-            }
-            set {
-                if (i > N || j > N || i < 0 || j < 0 || i != j)
-                    throw new ArgumentOutOfRangeException();
-                if (i == j) Elements[i] = value;
-                OnElementChanged(i, j);
-
-            }
+        protected override void Init(int n) {
+            N = n;
+            Elements = new T[N];
+        }
+        protected override void InitElements(T[][] elements) {
+            if (!IsValid(elements)) {
+                throw new ArgumentException("Matrix doesn't diagonal."); }
+            Init(elements.Length);
+            for (int i = 0; i < N; i++)
+                this[i, i] = elements[i][i];
         }
 
         private new bool IsValid(T[][] elements) {

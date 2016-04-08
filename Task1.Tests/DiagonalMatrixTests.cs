@@ -12,39 +12,39 @@ namespace Task1.Tests {
 
         [Test]
         public void CreateTest() {
-            SquareMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements); 
+            AbstractSquareMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements); 
         }
         [Test]
         public void CreateTest2(){
-            SquareMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements2);
+            AbstractSquareMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements2);
         }
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void CreateTest_Exception(){
-            SquareMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(_notRightDiogonalElements);
+            AbstractSquareMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(_notRightDiogonalElements);
         }
 
 
         [Test]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void SetElementTest_Exception(){
-            SquareMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements); 
+            AbstractSquareMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements); 
             diagonalMatrix[5,3] = 3;
 
         }
         [Test]
         public void SetElementTest() {
-            SquareMatrix<int> diogonalSquareMatrix = new DiagonalMatrix<int>(_rightDiogonalElements); 
+            AbstractSquareMatrix<int> diogonalSquareMatrix = new DiagonalMatrix<int>(_rightDiogonalElements); 
             diogonalSquareMatrix[0,0] = 3;
         }
         [Test]
         public void GetElementTest(){
-            SquareMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements);
+            AbstractSquareMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements);
             Assert.AreEqual(diagonalMatrix[2, 2],3);
         }
         [Test]
         public void GetElementTest2(){
-            SquareMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements);
+            AbstractSquareMatrix<int> diagonalMatrix = new DiagonalMatrix<int>(_rightDiogonalElements);
             Assert.AreEqual(diagonalMatrix[1, 2], 0);
         }
     }

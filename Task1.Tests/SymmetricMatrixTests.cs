@@ -9,18 +9,18 @@ namespace Task1.Tests{
 
         [Test]
         public void CreateTest(){
-            SquareMatrix<int> symmetricMatrix = new SymmetricMatrix<int>(_rightSymmElements);
+            AbstractSquareMatrix<int> symmetricMatrix = new SymmetricMatrix<int>(_rightSymmElements);
         }
         [Test]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void SetElementTest_Exception() {
-            SquareMatrix<int> symmetricMatrix = new SymmetricMatrix<int>(_rightSymmElements);
+            AbstractSquareMatrix<int> symmetricMatrix = new SymmetricMatrix<int>(_rightSymmElements);
             symmetricMatrix[3, 5] =  3;
             Assert.AreEqual(symmetricMatrix[3,5], 3);
         }
         [Test]
         public void SetElementTest() {
-            SquareMatrix<int> symmetricMatrix = new SymmetricMatrix<int>(_rightSymmElements);
+            AbstractSquareMatrix<int> symmetricMatrix = new SymmetricMatrix<int>(_rightSymmElements);
             symmetricMatrix[0,2] =  3;
             Assert.AreEqual(symmetricMatrix[2,0], 3);
         }
